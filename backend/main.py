@@ -76,6 +76,6 @@ async def review_thumbnail(
 
 # Serve the frontend as static files. Must be mounted after the API routes
 # above so it doesn't shadow them.
-FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+FRONTEND_DIR = Path(__file__).resolve().parent / "static"
 if FRONTEND_DIR.exists():
     app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
