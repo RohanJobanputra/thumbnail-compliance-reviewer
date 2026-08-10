@@ -1,0 +1,30 @@
+{
+  "Long Top 10 Thumbnail": {
+    "width": 226,
+    "height": 377
+  },
+  "Hero Banner - Kidz": {
+    "width": 320,
+    "height": 340
+  },
+  "Hero Banner - TV": {
+    "width": 372,
+    "height": 465
+  },
+  "Hero Banner - Mobile Home & Premium": {
+    "width": 412,
+    "height": 633
+  },
+  "Horizontal Thumbnail - Large": {
+    "width": 372,
+    "height": 215
+  },
+  "Horizontal Thumbnail - Small": {
+    "width": 260,
+    "height": 150
+  },
+  "Vertical Thumbnail": {
+    "width": 160,
+    "height": 240
+  }
+}

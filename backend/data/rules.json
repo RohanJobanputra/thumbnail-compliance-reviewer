@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "name": "Thumbnail Compliance Rules",
+  "description": "Machine-readable compliance rules for evaluating thumbnails against design guidelines.",
+  "rules": [
+    {
+      "id": "SAFE_ZONE",
+      "title": "Safe Zone Compliance",
+      "category": "Layout",
+      "severity": "Critical",
+      "evaluation_type": "vision+backend",
+      "question": "Are all critical visual elements positioned safely within the image boundaries?",
+      "evaluation_instructions": [
+        "Detect the primary subject.",
+        "Detect faces.",
+        "Detect the main title.",
+        "Detect brand logos.",
+        "Detect sponsor logos if present.",
+        "For every detected element, classify its prominence as 'primary' (clear, high-contrast, intended as a focal point) or 'background' (faded, low-opacity, gradient-obscured, or decorative texture).",
+        "Return bounding boxes for every detected element regardless of prominence -- do not discard background elements.",
+        "The backend will calculate a 7% safe margin from each image edge and check every bounding box against it, weighting severity by prominence."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether important elements are safely positioned, and note separately if any low-prominence elements cross the margin.",
+        "evidence": [],
+        "recommendation": "Move critical elements further from image edges if necessary."
+      }
+    },
+    {
+      "id": "SUBJECT_PROMINENCE",
+      "title": "Primary Subject Prominence",
+      "category": "Composition",
+      "severity": "High",
+      "evaluation_type": "vision",
+      "question": "Does the thumbnail contain one clear primary subject that immediately attracts attention?",
+      "evaluation_instructions": [
+        "Identify the dominant subject.",
+        "Estimate visual saliency.",
+        "Determine whether viewer attention naturally focuses on one primary subject."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether a clear focal subject exists.",
+        "evidence": [],
+        "recommendation": "Reduce competing elements or increase emphasis on the primary subject."
+      }
+    },
+    {
+      "id": "VISUAL_HIERARCHY",
+      "title": "Visual Hierarchy",
+      "category": "Composition",
+      "severity": "High",
+      "evaluation_type": "vision",
+      "question": "Does the composition establish a clear visual hierarchy?",
+      "evaluation_instructions": [
+        "Compare the prominence of the subject, title and branding.",
+        "Estimate the order in which viewers notice these elements.",
+        "Determine whether the visual flow is logical and intuitive."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether the thumbnail has a clear visual hierarchy.",
+        "evidence": [],
+        "recommendation": "Reorganize the layout to improve visual flow."
+      }
+    },
+    {
+      "id": "VISUAL_CLUTTER",
+      "title": "Visual Simplicity",
+      "category": "Composition",
+      "severity": "Medium",
+      "evaluation_type": "vision",
+      "question": "Does the thumbnail avoid unnecessary visual clutter?",
+      "evaluation_instructions": [
+        "Estimate scene complexity.",
+        "Count visually competing foreground elements.",
+        "Determine whether unnecessary objects distract from the main message."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether the artwork appears cluttered.",
+        "evidence": [],
+        "recommendation": "Remove unnecessary visual elements to simplify the composition."
+      }
+    },
+    {
+      "id": "TITLE_READABILITY",
+      "title": "Title Readability",
+      "category": "Typography",
+      "severity": "Critical",
+      "evaluation_type": "vision",
+      "question": "Is the title clearly readable in the thumbnail?",
+      "evaluation_instructions": [
+        "Locate the primary title using OCR.",
+        "Estimate OCR confidence.",
+        "Measure text contrast against the background.",
+        "Check whether the title overlaps important objects.",
+        "Determine whether the title remains readable at thumbnail size."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether the title is readable.",
+        "evidence": [],
+        "recommendation": "Increase text contrast, size or reposition the title if necessary."
+      }
+    },
+    {
+      "id": "BRAND_READABILITY",
+      "title": "Brand Visibility",
+      "category": "Branding",
+      "severity": "High",
+      "evaluation_type": "vision",
+      "question": "Are branding elements clearly visible and readable?",
+      "evaluation_instructions": [
+        "Detect logos and branding elements.",
+        "Estimate their visibility.",
+        "Measure contrast.",
+        "Determine whether branding overlaps other objects."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether branding is visible and readable.",
+        "evidence": [],
+        "recommendation": "Increase branding visibility or reposition branding if necessary."
+      }
+    },
+    {
+      "id": "TEXT_CLUTTER",
+      "title": "Text Clutter",
+      "category": "Typography",
+      "severity": "Medium",
+      "evaluation_type": "vision",
+      "question": "Is the amount of text limited to only essential information?",
+      "evaluation_instructions": [
+        "Extract all visible text using OCR.",
+        "Count distinct text regions.",
+        "Estimate text density.",
+        "Determine whether excessive labels compete with the main title."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether excessive text is present.",
+        "evidence": [],
+        "recommendation": "Remove unnecessary labels or secondary text."
+      }
+    },
+    {
+      "id": "TITLE_PLACEMENT",
+      "title": "Title Placement",
+      "category": "Layout",
+      "severity": "High",
+      "evaluation_type": "vision",
+      "question": "Is the title placed in a clear and unobstructed position?",
+      "evaluation_instructions": [
+        "Locate the title.",
+        "Determine whether it overlaps faces or the primary subject.",
+        "Determine whether it is positioned close to image edges.",
+        "Estimate whether the placement supports readability."
+      ],
+      "output_schema": {
+        "status": "PASS | WARNING | FAIL",
+        "confidence": "0.0-1.0",
+        "reason": "Explain whether the title placement is appropriate.",
+        "evidence": [],
+        "recommendation": "Move the title to an unobstructed location if required."
+      }
+    },
+    {
+      "id": "IMAGE_SPECIFICATIONS",
+      "title": "Asset Specifications",
+      "category": "Technical",
+      "severity": "Critical",
+      "evaluation_type": "backend",
+      "question": "Does the uploaded asset match the required dimensions for its asset type?",
+      "evaluation_instructions": [
+        "Read the uploaded image dimensions.",
+        "Determine the selected asset type.",
+        "Compare the image width and height against the specification table.",
+        "Verify aspect ratio."
+      ],
+      "output_schema": {
+        "status": "PASS | FAIL",
+        "confidence": "1.0",
+        "reason": "Explain whether the uploaded image matches the required specification.",
+        "evidence": [],
+        "recommendation": "Resize or recreate the image using the correct dimensions."
+      }
+    }
+  ]
+}

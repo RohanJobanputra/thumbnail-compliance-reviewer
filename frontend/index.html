@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thumbnail Compliance Reviewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Thumbnail Compliance Reviewer</h1>
+      <p class="subtitle">Validate in-app thumbnails and banners against design guidelines</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel upload-panel">
+        <h2>1. Upload &amp; Configure</h2>
+
+        <form id="review-form">
+          <label class="field-label" for="file-input">Thumbnail file</label>
+          <div id="dropzone" class="dropzone">
+            <input type="file" id="file-input" accept=".png,.jpg,.jpeg,.webp" hidden />
+            <div id="dropzone-empty">
+              <span class="dropzone-icon">&#8593;</span>
+              <p>Click to browse or drag a PNG / JPG / WEBP here</p>
+            </div>
+            <img id="preview-image" alt="Preview" hidden />
+          </div>
+          <p id="file-meta" class="file-meta"></p>
+
+          <label class="field-label" for="asset-type-select">Asset type</label>
+          <select id="asset-type-select" required>
+            <option value="" disabled selected>Loading asset types&hellip;</option>
+          </select>
+          <p id="spec-hint" class="spec-hint"></p>
+
+          <button type="submit" id="submit-btn" disabled>Run Compliance Review</button>
+          <p id="form-error" class="form-error" hidden></p>
+        </form>
+      </section>
+
+      <section class="panel report-panel">
+        <h2>2. Compliance Report</h2>
+        <div id="report-empty" class="report-empty">
+          <p>Upload a thumbnail and run a review to see results here.</p>
+        </div>
+        <div id="report-loading" class="report-loading" hidden>
+          <div class="spinner"></div>
+          <p>Running technical validation and Vision AI analysis&hellip;</p>
+        </div>
+        <div id="report-content" hidden></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
