@@ -22,9 +22,11 @@ ASSET_SPECS_PATH = DATA_DIR / "asset_specifications.json"
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
-print("GEMINI_API_KEY loaded:", bool(GEMINI_API_KEY))
-print("GEMINI_API_KEY prefix:", GEMINI_API_KEY[:8] if GEMINI_API_KEY else "EMPTY")
-print("GEMINI_MODEL:", GEMINI_MODEL)
+print("KEY loaded:", bool(GEMINI_API_KEY))
+print("KEY length:", len(GEMINI_API_KEY))
+print("KEY prefix:", GEMINI_API_KEY[:8] if GEMINI_API_KEY else "EMPTY")
+print("KEY suffix:", GEMINI_API_KEY[-4:] if GEMINI_API_KEY else "EMPTY")
+print("MODEL repr:", repr(GEMINI_MODEL))
 
 # Safe-zone margin from each edge, as specified in the design guidelines.
 SAFE_ZONE_MARGIN_PERCENT = 7.0
