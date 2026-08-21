@@ -144,23 +144,24 @@ form.addEventListener("submit", async (e) => {
 });
 
 function setLoadingState() {
-  reportEmpty.hidden = true;
-  reportContent.hidden = true;
-  reportLoading.hidden = false;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Running Review…";
 }
 
 function setEmptyState() {
-  reportLoading.hidden = true;
   reportContent.hidden = true;
   reportEmpty.hidden = false;
+  submitBtn.disabled = !(selectedFile && assetTypeSelect.value);
+  submitBtn.textContent = "Run Compliance Review";
 }
 
 // ---- Rendering ----
 
 function renderReport(report) {
-  reportLoading.hidden = true;
   reportEmpty.hidden = true;
   reportContent.hidden = false;
+  submitBtn.disabled = !(selectedFile && assetTypeSelect.value);
+  submitBtn.textContent = "Run Compliance Review";
 
   const tv = report.technical_validation;
 

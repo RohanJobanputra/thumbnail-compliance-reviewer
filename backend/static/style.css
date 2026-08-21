@@ -148,6 +148,10 @@ body {
   display: block;
 }
 
+#preview-image[hidden] {
+  display: none;
+}
+
 .file-meta {
   font-family: var(--font-mono);
   font-size: 12px;
